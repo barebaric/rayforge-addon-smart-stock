@@ -1,0 +1,242 @@
+# French translations for PACKAGE package.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-09 23:54+0100\n"
+"PO-Revision-Date: 2026-03-09 23:24+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Stock Detection"
+msgstr "Détection de matériel"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Close"
+msgstr "Fermer"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Create Stock Items"
+msgstr "Créer des éléments de matériel"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Detection Settings"
+msgstr "Paramètres de détection"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Camera"
+msgstr "Caméra"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "No camera selected"
+msgstr "Aucune caméra sélectionnée"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Change"
+msgstr "Modifier"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Capture Reference"
+msgstr "Capturer la référence"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Capture current view as reference"
+msgstr "Capturer la vue actuelle comme référence"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Capture"
+msgstr "Capturer"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Sensitivity"
+msgstr "Sensibilité"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Lower values detect more changes"
+msgstr "Les valeurs plus faibles détectent plus de changements"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Status"
+msgstr "État"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Ready - Click 'Capture Reference' to begin"
+msgstr "Prêt - Cliquez sur « Capturer la référence » pour commencer"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Detect Stock"
+msgstr "Détecter le matériel"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "No reference manager available"
+msgstr "Aucun gestionnaire de référence disponible"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Reference loaded - Ready"
+msgstr "Référence chargée - Prêt"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "No reference - Click 'Capture Reference' to capture one"
+msgstr ""
+"Pas de référence - Cliquez sur « Capturer la référence » pour en capturer une"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Not found"
+msgstr "Non trouvé"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Camera not found: {camera_id}"
+msgstr "Caméra non trouvée : {camera_id}"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "No camera frame available"
+msgstr "Aucune image de caméra disponible"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "No reference image loaded"
+msgstr "Aucune image de référence chargée"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Reference image has no frame data"
+msgstr "L'image de référence n'a pas de données d'image"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "No physical area or output size available"
+msgstr "Aucune zone physique ou taille de sortie disponible"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Processing..."
+msgstr "Traitement en cours..."
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Detected {count} items"
+msgstr "{count} éléments détectés"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Click 'Create Stock Items' to add them to the document"
+msgstr ""
+"Cliquez sur « Créer des éléments de matériel » pour les ajouter au document"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "No stock detected"
+msgstr "Aucun matériel détecté"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Try adjusting the stock placement or lighting"
+msgstr "Essayez d'ajuster le placement du matériel ou l'éclairage"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Detection failed"
+msgstr "La détection a échoué"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "No document editor available"
+msgstr "Aucun éditeur de document disponible"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "No document available"
+msgstr "Aucun document disponible"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Stock {num}"
+msgstr "Matériel {num}"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Stock Item {num}"
+msgstr "Élément de matériel {num}"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Created {count} stock items"
+msgstr "{count} éléments de matériel créés"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Error"
+msgstr "Erreur"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "No camera available"
+msgstr "Aucune caméra disponible"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Machine work area unknown"
+msgstr "Zone de travail de la machine inconnue"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Failed to capture aligned image"
+msgstr "Échec de la capture de l'image alignée"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+msgid "Reference captured - Ready"
+msgstr "Référence capturée - Prêt"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Smart Stock Reference"
+msgstr "Référence Smart Stock"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Capture reference image for stock detection"
+msgstr "Capturer une image de référence pour la détection de matériel"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Selected Camera"
+msgstr "Caméra sélectionnée"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Capture current camera view as reference"
+msgstr "Capturer la vue actuelle de la caméra comme référence"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Clear Reference"
+msgstr "Effacer la référence"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Remove stored reference image"
+msgstr "Supprimer l'image de référence stockée"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Clear"
+msgstr "Effacer"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "No reference captured"
+msgstr "Aucune référence capturée"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Just now"
+msgstr "À l'instant"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#, python-brace-format
+msgid "Reference captured {time}"
+msgstr "Référence capturée {time}"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+msgid "Cannot capture: machine work area unknown"
+msgstr "Impossible de capturer : zone de travail de la machine inconnue"
+
+#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/frontend.py
+msgid "Detect Stock from Camera..."
+msgstr "Détecter le matériel depuis la caméra..."

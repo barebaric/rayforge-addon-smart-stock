@@ -1,0 +1,21 @@
+name: smart_stock
+display_name: "Smart Stock"
+description: "Automatically create stock items from camera images using computer vision"
+api_version: 6
+depends:
+  - rayforge>=1.2.0
+author:
+  name: "Samuel Abels"
+  email: "noreply@rayforge.org"
+provides:
+  backend: "smart_stock.backend"
+  frontend: "smart_stock.frontend"
+license:
+  name: "BSL-1.1"
+  required: true
+  purchase_url: "https://barebaric.gumroad.com/l/rayforge-addon-smart-stock"
+  product_id: "sBP8qGXMTJZKi6vl_kW01g=="
+  patreon_tier_ids:
+    - "27607724"
+    - "27607754"
+    - "27607776"
