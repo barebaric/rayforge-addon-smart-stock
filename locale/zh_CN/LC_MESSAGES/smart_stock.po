@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-09 23:54+0100\n"
+"POT-Creation-Date: 2026-03-11 10:59+0100\n"
 "PO-Revision-Date: 2026-03-09 23:24+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,224 +16,224 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Stock Detection"
 msgstr "材料检测"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Close"
 msgstr "关闭"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Create Stock Items"
 msgstr "创建材料项目"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Detection Settings"
 msgstr "检测设置"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Camera"
 msgstr "摄像头"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "No camera selected"
 msgstr "未选择摄像头"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Change"
 msgstr "更改"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Capture Reference"
 msgstr "捕获参考"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Capture current view as reference"
 msgstr "将当前视图捕获为参考"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Capture"
 msgstr "捕获"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Sensitivity"
 msgstr "灵敏度"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Lower values detect more changes"
 msgstr "较低的值检测到更多变化"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Status"
 msgstr "状态"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Ready - Click 'Capture Reference' to begin"
 msgstr "就绪 - 点击'捕获参考'开始"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Detect Stock"
 msgstr "检测材料"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "No reference manager available"
 msgstr "没有可用的参考管理器"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Reference loaded - Ready"
 msgstr "参考已加载 - 就绪"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "No reference - Click 'Capture Reference' to capture one"
 msgstr "没有参考 - 点击'捕获参考'来捕获一个"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Not found"
 msgstr "未找到"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 #, python-brace-format
 msgid "Camera not found: {camera_id}"
 msgstr "未找到摄像头：{camera_id}"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "No camera frame available"
 msgstr "没有可用的摄像头帧"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "No reference image loaded"
 msgstr "未加载参考图像"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Reference image has no frame data"
 msgstr "参考图像没有帧数据"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "No physical area or output size available"
 msgstr "没有可用的物理区域或输出尺寸"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Processing..."
 msgstr "处理中..."
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 #, python-brace-format
 msgid "Detected {count} items"
 msgstr "检测到 {count} 个项目"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Click 'Create Stock Items' to add them to the document"
 msgstr "点击'创建材料项目'将其添加到文档"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "No stock detected"
 msgstr "未检测到材料"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Try adjusting the stock placement or lighting"
-msgstr ""
+msgstr "尝试调整材料放置或照明"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Detection failed"
 msgstr "检测失败"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "No document editor available"
 msgstr "没有可用的文档编辑器"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "No document available"
 msgstr "没有可用的文档"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 #, python-brace-format
 msgid "Stock {num}"
 msgstr "材料 {num}"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 #, python-brace-format
 msgid "Stock Item {num}"
 msgstr "材料项目 {num}"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 #, python-brace-format
 msgid "Created {count} stock items"
 msgstr "创建了 {count} 个材料项目"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Error"
 msgstr "错误"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "No camera available"
 msgstr "没有可用的摄像头"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Machine work area unknown"
 msgstr "机器工作区域未知"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Failed to capture aligned image"
 msgstr "捕获对齐图像失败"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/dialogs/stock_detection_dialog.py
 msgid "Reference captured - Ready"
 msgstr "参考已捕获 - 就绪"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Smart Stock Reference"
 msgstr "智能材料参考"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Capture reference image for stock detection"
 msgstr "捕获参考图像用于材料检测"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Selected Camera"
 msgstr "选定的摄像头"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Capture current camera view as reference"
 msgstr "将当前摄像头视图捕获为参考"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Clear Reference"
 msgstr "清除参考"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Remove stored reference image"
 msgstr "移除存储的参考图像"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Clear"
 msgstr "清除"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "No reference captured"
 msgstr "未捕获参考"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Unknown"
 msgstr "未知"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Just now"
 msgstr "刚才"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 #, python-brace-format
 msgid "Reference captured {time}"
 msgstr "参考已于 {time} 捕获"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/widgets/reference_capture_group.py
+#: smart_stock/widgets/reference_capture_group.py
 msgid "Cannot capture: machine work area unknown"
 msgstr "无法捕获：机器工作区域未知"
 
-#: rayforge/builtin_addons/rayforge-addon-smart-stock/smart_stock/frontend.py
+#: smart_stock/frontend.py
 msgid "Detect Stock from Camera..."
 msgstr "从摄像头检测材料..."
