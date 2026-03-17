@@ -6,6 +6,7 @@ from typing import List, Optional
 
 import numpy as np
 
+from rayforge.core.geo import Edge, Point, Polygon, Rect
 from rayforge.core.geo.contours import filter_to_external_contours
 from rayforge.core.geo.polygon import (
     convex_hull,
@@ -18,6 +19,7 @@ from rayforge.core.geo.polygon import (
     point_line_distance,
     extract_polygon_edges,
 )
+from rayforge.core.geo.smooth import smooth_polyline
 from rayforge.image.tracing import trace_color_image
 
 logger = logging.getLogger(__name__)
@@ -32,6 +34,8 @@ class ContourConfig:
     max_items: int = 10
     merge_distance: float = 10.0
     use_convex_hull: bool = False
+    smoothing_amount: int = 0
+    corner_angle_threshold: float = 120.0
 
 
 @dataclass
@@ -40,8 +44,8 @@ class DetectedContour:
 
     points: np.ndarray
     area: float
-    centroid: tuple
-    bounding_rect: tuple
+    centroid: Point
+    bounding_rect: Rect
 
 
 class ContourDetector:
@@ -66,8 +70,8 @@ class ContourDetector:
         Args:
             current: Current BGR color image from camera.
             reference: Optional reference BGR image of empty machine.
-            sensitivity: Detection sensitivity (5-200). Lower values detect
-                         more changes. Used as tolerance for matching.
+            sensitivity: Detection sensitivity (0-100). Higher values detect
+                         more changes. 0=low sensitivity, 100=high sensitivity.
 
         Returns:
             List of DetectedContour objects.
@@ -103,7 +107,7 @@ class ContourDetector:
         if not curr_geometries:
             return []
 
-        tolerance = sensitivity / 5.0
+        tolerance = (100 - sensitivity) / 2.5 + 1
         logger.debug(f"Edge matching tolerance: {tolerance}")
 
         ref_edges = []
@@ -159,6 +163,9 @@ class ContourDetector:
         if self.config.use_convex_hull:
             solid_polygons = [convex_hull(p) for p in solid_polygons]
 
+        if self.config.smoothing_amount > 0:
+            solid_polygons = [self._smooth_polygon(p) for p in solid_polygons]
+
         results = []
         for i, poly in enumerate(solid_polygons):
             if poly and len(poly) >= 3:
@@ -176,7 +183,10 @@ class ContourDetector:
         return results
 
     def _polygon_has_significant_new_edges(
-        self, polygon: list, ref_edges: List[tuple], tolerance: float
+        self,
+        polygon: Polygon,
+        ref_edges: List[Edge],
+        tolerance: float,
     ) -> bool:
         """
         Check if polygon has a significant number of new edges.
@@ -202,7 +212,7 @@ class ContourDetector:
 
         return new_edge_count > n / 2
 
-    def _is_solid_polygon(self, polygon: list) -> bool:
+    def _is_solid_polygon(self, polygon: Polygon) -> bool:
         """
         Check if polygon is solid (not a thin strip).
 
@@ -226,9 +236,9 @@ class ContourDetector:
 
     def _find_shared_ref_edge(
         self,
-        p1: tuple,
-        p2: tuple,
-        ref_edges: List[tuple],
+        p1: Point,
+        p2: Point,
+        ref_edges: List[Edge],
         tolerance: float,
     ) -> Optional[int]:
         """
@@ -275,6 +285,9 @@ class ContourDetector:
         if self.config.use_convex_hull:
             polygons = [convex_hull(p) for p in polygons]
 
+        if self.config.smoothing_amount > 0:
+            polygons = [self._smooth_polygon(p) for p in polygons]
+
         results = []
         for poly in polygons:
             if poly and len(poly) >= 3:
@@ -288,7 +301,7 @@ class ContourDetector:
         return results
 
     def _polygon_to_detected(
-        self, polygon: List[tuple]
+        self, polygon: Polygon
     ) -> Optional[DetectedContour]:
         """Convert polygon back to DetectedContour."""
         if not polygon or len(polygon) < 3:
@@ -315,8 +328,8 @@ class ContourDetector:
         )
 
     def _merge_nearby_polygons(
-        self, polygons: List[List[tuple]], distance: float
-    ) -> List[List[tuple]]:
+        self, polygons: List[Polygon], distance: float
+    ) -> List[Polygon]:
         """Expand polygons, union overlapping ones, then shrink back."""
         if not polygons:
             return []
@@ -335,3 +348,32 @@ class ContourDetector:
                 result.extend(shrunk)
 
         return result
+
+    def _smooth_polygon(self, polygon: Polygon) -> Polygon:
+        """
+        Smooth a polygon using Gaussian filtering from the geo module.
+
+        Angles sharper than the configured threshold are preserved as corners.
+
+        Args:
+            polygon: List of (x, y) points.
+
+        Returns:
+            Smoothed polygon.
+        """
+        if len(polygon) < 3 or self.config.smoothing_amount == 0:
+            return polygon
+
+        points_3d = [(p[0], p[1], 0.0) for p in polygon]
+
+        smoothed_3d = smooth_polyline(
+            points_3d,
+            self.config.smoothing_amount,
+            self.config.corner_angle_threshold,
+            is_closed=True,
+        )
+
+        if not smoothed_3d:
+            return polygon
+
+        return [(p[0], p[1]) for p in smoothed_3d]

@@ -12,10 +12,12 @@ from gi.repository import Adw, GLib, Gdk, GdkPixbuf, Gtk
 from rayforge.core.geo import Geometry
 from rayforge.core.stock_asset import StockAsset
 from rayforge.core.stock import StockItem
+from rayforge.ui_gtk.camera.selection_dialog import CameraSelectionDialog
 from rayforge.ui_gtk.shared.patched_dialog_window import PatchedDialogWindow
+from rayforge.ui_gtk.shared.slider import create_slider_row
 
 from ..models.reference_image import ReferenceImage
-from ..services.contour_detector import ContourDetector
+from ..services.contour_detector import ContourDetector, ContourConfig
 from ..utils import get_output_size
 
 if TYPE_CHECKING:
@@ -52,14 +54,16 @@ class StockDetectionDialog(PatchedDialogWindow):
         self._capture_source_id: Optional[int] = None
         self._detecting = False
         self._last_sensitivity_state: Optional[bool] = None
+        self._initial_detection_done = False
 
         self._physical_area: Optional[
             Tuple[Tuple[float, float], Tuple[float, float]]
         ] = None
         self._output_size: Optional[Tuple[int, int]] = None
 
-        self._detector = ContourDetector()
-        self._sensitivity: float = 50.0
+        self._config = ContourConfig()
+        self._detector = ContourDetector(self._config)
+        self._sensitivity: float = 0.0
 
         self.set_title(_("Stock Detection"))
         self.set_default_size(1150, 750)
@@ -153,22 +157,33 @@ class StockDetectionDialog(PatchedDialogWindow):
         self._capture_row.add_suffix(self._capture_button)
         self._settings_group.add(self._capture_row)
 
-        self._threshold_row = Adw.ActionRow(
+        sensitivity_adj = Gtk.Adjustment(
+            lower=0, upper=100, step_increment=1, page_increment=10
+        )
+        sensitivity_adj.set_value(self._sensitivity)
+        self._threshold_row, self._threshold_scale = create_slider_row(
             title=_("Sensitivity"),
-            subtitle=_("Lower values detect more changes"),
+            subtitle=_("Higher values detect more changes"),
+            adjustment=sensitivity_adj,
+            digits=0,
+            on_value_changed=self._on_threshold_changed,
+            format_suffix="%",
         )
         self._settings_group.add(self._threshold_row)
 
-        self._threshold_scale = Gtk.Scale()
-        self._threshold_scale.set_range(5, 200)
-        self._threshold_scale.set_value(50)
-        self._threshold_scale.set_hexpand(True)
-        self._threshold_scale.set_draw_value(True)
-        self._threshold_scale.set_value_pos(Gtk.PositionType.RIGHT)
-        self._threshold_scale.connect(
-            "value-changed", self._on_threshold_changed
+        smoothing_adj = Gtk.Adjustment(
+            lower=0, upper=100, step_increment=1, page_increment=10
         )
-        self._threshold_row.add_suffix(self._threshold_scale)
+        smoothing_adj.set_value(50)
+        self._smoothing_row, self._smoothing_scale = create_slider_row(
+            title=_("Smoothing"),
+            subtitle=_("Higher values produce smoother contours"),
+            adjustment=smoothing_adj,
+            digits=0,
+            on_value_changed=self._on_smoothing_changed,
+            format_suffix="%",
+        )
+        self._settings_group.add(self._smoothing_row)
 
         self._status_row = Adw.ActionRow(
             title=_("Status"),
@@ -287,6 +302,14 @@ class StockDetectionDialog(PatchedDialogWindow):
 
         self._preview_drawing.queue_draw()
         self._update_button_sensitivity()
+
+        if (
+            not self._initial_detection_done
+            and self._reference_image is not None
+        ):
+            self._initial_detection_done = True
+            GLib.idle_add(self._trigger_detection)
+
         return True
 
     def _on_detect_stock(self, button):
@@ -394,6 +417,8 @@ class StockDetectionDialog(PatchedDialogWindow):
             )
             self._create_btn.set_sensitive(True)
         else:
+            self._detected_geometries = []
+            self._create_btn.set_sensitive(False)
             self._status_row.set_title(_("No stock detected"))
             self._status_row.set_subtitle(
                 _("Try adjusting the stock placement or lighting")
@@ -405,6 +430,8 @@ class StockDetectionDialog(PatchedDialogWindow):
         self._detecting = False
         self._progress_bar.set_visible(False)
         self._detect_btn.set_sensitive(True)
+        self._detected_geometries = []
+        self._create_btn.set_sensitive(False)
         self._status_row.set_title(_("Detection failed"))
         self._status_row.set_subtitle(message)
         self._show_error(message)
@@ -561,6 +588,15 @@ class StockDetectionDialog(PatchedDialogWindow):
         self._detect_btn.set_sensitive(should_be_sensitive)
         self._capture_button.set_sensitive(has_camera and has_frame)
 
+    def _trigger_detection(self):
+        if (
+            self._reference_image is not None
+            and self._current_frame_world is not None
+            and not self._detecting
+        ):
+            self._on_detect_stock(self._detect_btn)
+        return False
+
     def _show_error(self, message: str):
         self._status_row.set_title(_("Error"))
         self._status_row.set_subtitle(message)
@@ -579,6 +615,10 @@ class StockDetectionDialog(PatchedDialogWindow):
     def _on_threshold_changed(self, scale):
         self._sensitivity = scale.get_value()
 
+    def _on_smoothing_changed(self, scale):
+        self._config.smoothing_amount = int(scale.get_value() * 2)
+        self._detector = ContourDetector(self._config)
+
     def _on_capture_clicked(self, button):
         logger.debug("Capture button clicked")
         if not self._controller:
@@ -595,6 +635,10 @@ class StockDetectionDialog(PatchedDialogWindow):
             logger.warning("No machine available - cannot capture")
             self._show_error(_("Machine work area unknown"))
             return
+
+        self._detected_geometries = []
+        self._create_btn.set_sensitive(False)
+        self._preview_drawing.queue_draw()
 
         axis_extents = self._machine.axis_extents
         physical_area = (
@@ -637,10 +681,6 @@ class StockDetectionDialog(PatchedDialogWindow):
         logger.info(f"Reference captured for camera {self._camera_id}")
 
     def _on_camera_change_clicked(self, button):
-        from rayforge.ui_gtk.camera.selection_dialog import (
-            CameraSelectionDialog,
-        )
-
         dialog = CameraSelectionDialog(self, mode="configured")
         dialog.present()
 
