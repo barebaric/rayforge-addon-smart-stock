@@ -149,8 +149,8 @@ class TestDetectContours:
         """Test detection of multiple distinct shapes."""
         reference = np.full((300, 300, 3), 0, dtype=np.uint8)
         current = np.full((300, 300, 3), 0, dtype=np.uint8)
-        current[20:80, 20:80] = [255, 255, 255]
-        current[120:180, 120:180] = [255, 255, 255]
+        current[50:110, 50:110] = [255, 255, 255]
+        current[150:210, 150:210] = [255, 255, 255]
 
         result = detector_low_threshold.detect_contours(
             current, reference=reference
@@ -324,10 +324,10 @@ class TestIntegration:
         """Test that multiple detection calls work correctly."""
         reference = np.full((200, 200, 3), 0, dtype=np.uint8)
         current1 = np.full((200, 200, 3), 0, dtype=np.uint8)
-        current1[40:80, 40:80] = [255, 255, 255]
+        current1[50:100, 50:100] = [255, 255, 255]
 
         current2 = np.full((200, 200, 3), 0, dtype=np.uint8)
-        current2[100:180, 100:180] = [255, 255, 255]
+        current2[50:130, 50:130] = [255, 255, 255]
 
         result1 = detector.detect_contours(current1, reference=reference)
         result2 = detector.detect_contours(current2, reference=reference)
@@ -362,8 +362,8 @@ class TestHoleFiltering:
         """Test that two separate shapes are both detected."""
         reference = np.full((200, 200, 3), 0, dtype=np.uint8)
         current = np.full((200, 200, 3), 0, dtype=np.uint8)
-        current[20:80, 20:80] = [255, 255, 255]
-        current[120:180, 120:180] = [255, 255, 255]
+        current[50:100, 50:100] = [255, 255, 255]
+        current[120:170, 120:170] = [255, 255, 255]
 
         contours = detector.detect_contours(current, reference=reference)
 
