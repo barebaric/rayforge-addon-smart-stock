@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-11 10:59+0100\n"
+"POT-Creation-Date: 2026-03-17 23:10+0100\n"
 "PO-Revision-Date: 2026-03-09 23:24+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -65,8 +65,16 @@ msgid "Sensitivity"
 msgstr "Sensibilidad"
 
 #: smart_stock/dialogs/stock_detection_dialog.py
-msgid "Lower values detect more changes"
-msgstr "Valores más bajos detectan más cambios"
+msgid "Higher values detect more changes"
+msgstr "Valores más altos detectan más cambios"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Smoothing"
+msgstr "Suavizado"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Higher values produce smoother contours"
+msgstr "Valores más altos producen contornos más suaves"
 
 #: smart_stock/dialogs/stock_detection_dialog.py
 #: smart_stock/widgets/reference_capture_group.py
