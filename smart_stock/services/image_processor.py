@@ -166,6 +166,52 @@ class ImageProcessor:
 
         return mask
 
+    def compute_grayscale_difference(
+        self,
+        current: np.ndarray,
+        reference: np.ndarray,
+    ) -> np.ndarray:
+        """
+        Compute grayscale difference between current and reference images.
+
+        Returns the raw difference without thresholding, which can be used
+        with gradient-based edge detection methods like vtracer.
+
+        Args:
+            current: Current BGR image from camera.
+            reference: Reference BGR image of empty machine.
+
+        Returns:
+            Grayscale difference image (0-255 range).
+        """
+        ref_h, ref_w = reference.shape[:2]
+        curr_h, curr_w = current.shape[:2]
+
+        if ref_w != curr_w or ref_h != curr_h:
+            current = cv2.resize(current, (ref_w, ref_h))
+
+        ref_norm = self.normalize_brightness_contrast(reference)
+        curr_norm = self.normalize_brightness_contrast(current)
+
+        blur_size = self.config.gaussian_blur_size
+        if self.config.adaptive_blur:
+            h, w = ref_norm.shape[:2]
+            min_dim = min(w, h)
+            blur_size = max(5, min(15, min_dim // 100))
+            if blur_size % 2 == 0:
+                blur_size += 1
+
+        ref_blurred = cv2.GaussianBlur(ref_norm, (blur_size, blur_size), 0)
+        curr_blurred = cv2.GaussianBlur(curr_norm, (blur_size, blur_size), 0)
+
+        diff_b = cv2.absdiff(ref_blurred[:, :, 0], curr_blurred[:, :, 0])
+        diff_g = cv2.absdiff(ref_blurred[:, :, 1], curr_blurred[:, :, 1])
+        diff_r = cv2.absdiff(ref_blurred[:, :, 2], curr_blurred[:, :, 2])
+
+        diff = np.maximum(np.maximum(diff_b, diff_g), diff_r)
+
+        return diff
+
     def apply_morphology(
         self, mask: np.ndarray, operation: str = "clean"
     ) -> np.ndarray:

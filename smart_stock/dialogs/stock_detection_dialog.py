@@ -16,7 +16,6 @@ from rayforge.ui_gtk.shared.patched_dialog_window import PatchedDialogWindow
 
 from ..models.reference_image import ReferenceImage
 from ..services.contour_detector import ContourDetector
-from ..services.image_processor import ImageProcessor
 from ..utils import get_output_size
 
 if TYPE_CHECKING:
@@ -59,10 +58,8 @@ class StockDetectionDialog(PatchedDialogWindow):
         ] = None
         self._output_size: Optional[Tuple[int, int]] = None
 
-        self._processor = ImageProcessor()
         self._detector = ContourDetector()
-        self._live_mask: Optional[np.ndarray] = None
-        self._mask_accumulator: Optional[np.ndarray] = None
+        self._sensitivity: float = 50.0
 
         self.set_title(_("Stock Detection"))
         self.set_default_size(1150, 750)
@@ -288,39 +285,9 @@ class StockDetectionDialog(PatchedDialogWindow):
             physical_area=self._physical_area,
         )
 
-        if (
-            self._reference_image is not None
-            and self._reference_image.raw_frame is not None
-            and self._current_frame_world is not None
-        ):
-            ref_frame = self._reference_image.raw_frame
-            raw_mask = self._processor.compute_difference(
-                self._current_frame_world, ref_frame
-            )
-            self._live_mask = self._apply_mask_smoothing(raw_mask, alpha=0.3)
-        else:
-            self._live_mask = None
-            self._mask_accumulator = None
-
         self._preview_drawing.queue_draw()
         self._update_button_sensitivity()
         return True
-
-    def _apply_mask_smoothing(
-        self, mask: np.ndarray, alpha: float = 0.3
-    ) -> np.ndarray:
-        if self._mask_accumulator is None:
-            self._mask_accumulator = mask.astype(np.float32)
-            return mask
-
-        if self._mask_accumulator.shape != mask.shape:
-            self._mask_accumulator = mask.astype(np.float32)
-            return mask
-
-        cv2.accumulateWeighted(mask, self._mask_accumulator, alpha)
-        smoothed = self._mask_accumulator.astype(np.uint8)
-        _, smoothed = cv2.threshold(smoothed, 127, 255, cv2.THRESH_BINARY)
-        return smoothed
 
     def _on_detect_stock(self, button):
         if self._current_frame_world is None:
@@ -351,29 +318,24 @@ class StockDetectionDialog(PatchedDialogWindow):
 
         current_frame_world = self._current_frame_world
         physical_area = self._physical_area
+        sensitivity = self._sensitivity
 
-        if self._live_mask is not None:
-            diff_mask = self._live_mask.copy()
-            mask_nz = np.count_nonzero(diff_mask)
-            logger.debug(
-                f"Using smoothed live mask: non-zero pixels = {mask_nz}"
-            )
-        else:
-            diff_mask = self._processor.compute_difference(
-                current_frame_world, ref_frame
-            )
-            mask_nz = np.count_nonzero(diff_mask)
-            logger.debug(f"Using fresh diff mask: non-zero pixels = {mask_nz}")
+        logger.debug("Tracing with reference comparison")
 
         def process_detection():
             try:
                 logger.debug(
                     f"Reference frame shape: {ref_frame.shape}, "
-                    f"current frame shape: {current_frame_world.shape}"
+                    f"current frame shape: {current_frame_world.shape}, "
+                    f"sensitivity: {sensitivity}"
                 )
 
-                contours = self._detector.detect_contours(diff_mask)
-                logger.debug(f"Found {len(contours)} raw contours")
+                contours = self._detector.detect_contours(
+                    current=current_frame_world,
+                    reference=ref_frame,
+                    sensitivity=sensitivity,
+                )
+                logger.debug(f"Found {len(contours)} contours from vtracer")
 
                 if not contours:
                     GLib.idle_add(self._on_detection_complete, False, 0)
@@ -488,28 +450,6 @@ class StockDetectionDialog(PatchedDialogWindow):
 
         Gdk.cairo_set_source_pixbuf(cr, pb, offset_x, offset_y)
         cr.paint()
-
-        if self._live_mask is not None:
-            mask_rgb = cv2.cvtColor(self._live_mask, cv2.COLOR_GRAY2RGB)
-            mask_resized = cv2.resize(
-                mask_rgb,
-                (new_width, new_height),
-                interpolation=cv2.INTER_NEAREST,
-            )
-            mask_resized = np.ascontiguousarray(mask_resized)
-            mask_pixels = GLib.Bytes.new(mask_resized.tobytes())
-            mask_pb = GdkPixbuf.Pixbuf.new_from_bytes(
-                mask_pixels,
-                GdkPixbuf.Colorspace.RGB,
-                False,
-                8,
-                new_width,
-                new_height,
-                new_width * 3,
-            )
-            cr.set_source_rgba(1.0, 0.0, 0.0, 0.5)
-            Gdk.cairo_set_source_pixbuf(cr, mask_pb, offset_x, offset_y)
-            cr.paint_with_alpha(0.5)
 
         if self._physical_area is None:
             return
@@ -637,8 +577,7 @@ class StockDetectionDialog(PatchedDialogWindow):
         self.close()
 
     def _on_threshold_changed(self, scale):
-        threshold = int(scale.get_value())
-        self._processor.set_threshold(threshold)
+        self._sensitivity = scale.get_value()
 
     def _on_capture_clicked(self, button):
         logger.debug("Capture button clicked")
@@ -719,8 +658,6 @@ class StockDetectionDialog(PatchedDialogWindow):
         self._camera_id = new_camera_id
         self._controller = None
         self._current_frame_world = None
-        self._live_mask = None
-        self._mask_accumulator = None
         self._detected_geometries = []
         self._create_btn.set_sensitive(False)
         self._load_reference()

@@ -18,13 +18,3 @@ class ReferenceImage:
         Tuple[Tuple[float, float], Tuple[float, float]]
     ] = None
     output_size: Optional[Tuple[int, int]] = None
-
-    def to_dict(self):
-        return {
-            "raw_frame": self.raw_frame,
-            "capture_timestamp": self.capture_timestamp,
-            "camera_id": self.camera_id,
-            "calibration": self.calibration,
-            "physical_area": self.physical_area,
-            "output_size": self.output_size,
-        }
