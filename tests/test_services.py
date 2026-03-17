@@ -157,8 +157,8 @@ class TestContourDetector:
         """Test detection of multiple distinct shapes."""
         reference = np.full((300, 300, 3), 0, dtype=np.uint8)
         current = np.full((300, 300, 3), 0, dtype=np.uint8)
-        current[20:80, 20:80] = [255, 255, 255]
-        current[120:180, 120:180] = [255, 255, 255]
+        current[50:110, 50:110] = [255, 255, 255]
+        current[150:210, 150:210] = [255, 255, 255]
 
         result = detector_low_threshold.detect_contours(
             current, reference=reference
