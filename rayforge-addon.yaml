@@ -1,14 +1,13 @@
 name: smart_stock
 display_name: "Smart Stock"
 description: "Automatically create stock items from camera images using computer vision"
-api_version: 6
+api_version: 12
 depends:
   - rayforge>=1.2.0
 author:
   name: "Samuel Abels"
   email: "noreply@rayforge.org"
 provides:
-  backend: "smart_stock.backend"
   frontend: "smart_stock.frontend"
 license:
   name: "BSL-1.1"
