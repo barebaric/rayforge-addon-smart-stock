@@ -6,20 +6,20 @@ from typing import List, Optional
 
 import numpy as np
 
-from rayforge.core.geo import Edge, Point, Polygon, Rect
-from rayforge.core.geo.contours import filter_to_external_contours
-from rayforge.core.geo.polygon import (
-    convex_hull,
-    polygon_offset,
-    polygon_union,
-    polygon_area,
-    polygon_centroid,
-    polygon_bounds,
-    polygon_perimeter,
+from raygeo import Edge, Point, Polygon, Rect
+from raygeo.path import filter_to_external_contours
+from raygeo.shape.polygon import (
+    get_polygon_convex_hull,
+    offset_polygon,
+    get_polygons_union,
+    get_polygon_area,
+    get_polygon_centroid,
+    get_polygon_bounds,
+    get_polygon_perimeter,
     point_line_distance,
-    extract_polygon_edges,
+    get_polygon_edges,
 )
-from rayforge.core.geo.smooth import smooth_polyline
+from raygeo.algo.smooth import smooth_polyline
 from rayforge.image.tracing import trace_color_image
 
 logger = logging.getLogger(__name__)
@@ -114,7 +114,7 @@ class ContourDetector:
         for geo in ref_geometries:
             for poly in geo.to_polygons():
                 if poly and len(poly) >= 2:
-                    ref_edges.extend(extract_polygon_edges(poly))
+                    ref_edges.extend(get_polygon_edges(poly))
         logger.debug(f"Reference has {len(ref_edges)} edges")
 
         curr_polygons = []
@@ -161,7 +161,9 @@ class ContourDetector:
             logger.debug(f"After merge: {len(solid_polygons)} polygons")
 
         if self.config.use_convex_hull:
-            solid_polygons = [convex_hull(p) for p in solid_polygons]
+            solid_polygons = [
+                get_polygon_convex_hull(p) for p in solid_polygons
+            ]
 
         if self.config.smoothing_amount > 0:
             solid_polygons = [self._smooth_polygon(p) for p in solid_polygons]
@@ -222,11 +224,11 @@ class ContourDetector:
         if len(polygon) < 3:
             return False
 
-        area = abs(polygon_area(polygon))
+        area = abs(get_polygon_area(polygon))
         if area < 1.0:
             return False
 
-        perimeter = polygon_perimeter(polygon)
+        perimeter = get_polygon_perimeter(polygon)
         if perimeter < 1.0:
             return False
 
@@ -283,7 +285,7 @@ class ContourDetector:
             )
 
         if self.config.use_convex_hull:
-            polygons = [convex_hull(p) for p in polygons]
+            polygons = [get_polygon_convex_hull(p) for p in polygons]
 
         if self.config.smoothing_amount > 0:
             polygons = [self._smooth_polygon(p) for p in polygons]
@@ -308,7 +310,7 @@ class ContourDetector:
             return None
 
         points = np.array(polygon, dtype=np.float32)
-        area = abs(polygon_area(polygon))
+        area = abs(get_polygon_area(polygon))
 
         if area < self.config.min_contour_area:
             return None
@@ -316,8 +318,8 @@ class ContourDetector:
         if area > self.config.max_contour_area:
             return None
 
-        centroid = polygon_centroid(polygon)
-        min_x, min_y, max_x, max_y = polygon_bounds(polygon)
+        centroid = get_polygon_centroid(polygon)
+        min_x, min_y, max_x, max_y = get_polygon_bounds(polygon)
         bounding_rect = (min_x, min_y, max_x - min_x, max_y - min_y)
 
         return DetectedContour(
@@ -336,14 +338,14 @@ class ContourDetector:
 
         expanded = []
         for poly in polygons:
-            offset_polys = polygon_offset(poly, distance)
+            offset_polys = offset_polygon(poly, distance)
             expanded.extend(offset_polys)
 
-        merged = polygon_union(expanded)
+        merged = get_polygons_union(expanded)
 
         result = []
         for poly in merged:
-            shrunk = polygon_offset(poly, -distance)
+            shrunk = offset_polygon(poly, -distance)
             if shrunk:
                 result.extend(shrunk)
 
