@@ -6,9 +6,10 @@ from typing import List, Optional
 
 import numpy as np
 
-from raygeo import Edge, Point, Polygon, Rect
-from raygeo.path import filter_to_external_contours
-from raygeo.shape.polygon import (
+from raygeo.geo import Geometry
+from raygeo.geo.algo.smooth import smooth_polyline
+from raygeo.geo.types import Edge, Point, Polygon, Rect
+from raygeo.geo.shape.polygon import (
     get_polygon_convex_hull,
     offset_polygon,
     get_polygons_union,
@@ -19,7 +20,6 @@ from raygeo.shape.polygon import (
     point_line_distance,
     get_polygon_edges,
 )
-from raygeo.algo.smooth import smooth_polyline
 from rayforge.image.tracing import trace_color_image
 
 logger = logging.getLogger(__name__)
@@ -268,7 +268,10 @@ class ContourDetector:
             logger.debug("No geometries found by tracer")
             return []
 
-        external_geometries = filter_to_external_contours(geometries)
+        merged = Geometry()
+        for g in geometries:
+            merged.extend(g)
+        external_geometries = merged.filter_to_external_contours()
 
         polygons = []
         for geo in external_geometries:
