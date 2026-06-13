@@ -271,13 +271,12 @@ class ContourDetector:
         merged = Geometry()
         for g in geometries:
             merged.extend(g)
-        external_geometries = merged.filter_to_external_contours()
+        merged.filter_to_external_contours()
 
         polygons = []
-        for geo in external_geometries:
-            for poly in geo.to_polygons():
-                if poly and len(poly) >= 3:
-                    polygons.append(poly)
+        for poly in merged.to_polygons():
+            if poly and len(poly) >= 3:
+                polygons.append(poly)
 
         if not polygons:
             return []

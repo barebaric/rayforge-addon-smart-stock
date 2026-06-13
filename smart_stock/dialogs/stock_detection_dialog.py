@@ -9,7 +9,7 @@ import cv2
 import numpy as np
 from gi.repository import Adw, GLib, Gdk, GdkPixbuf, Gtk
 
-from raygeo import Geometry
+from raygeo.geo import Geometry
 from rayforge.core.stock_asset import StockAsset
 from rayforge.core.stock import StockItem
 from rayforge.ui_gtk.camera.selection_dialog import CameraSelectionDialog
