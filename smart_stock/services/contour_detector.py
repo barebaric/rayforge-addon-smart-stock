@@ -7,7 +7,7 @@ from typing import List, Optional
 import numpy as np
 
 from raygeo.geo import Geometry
-from raygeo.geo.algo.smooth import smooth_polyline
+from raygeo.geo.algo.smooth import smooth_polyline_3d
 from raygeo.geo.types import Edge, Point, Polygon, Rect
 from raygeo.geo.shape.polygon import (
     get_polygon_convex_hull,
@@ -370,7 +370,7 @@ class ContourDetector:
 
         points_3d = [(p[0], p[1], 0.0) for p in polygon]
 
-        smoothed_3d = smooth_polyline(
+        smoothed_3d = smooth_polyline_3d(
             points_3d,
             self.config.smoothing_amount,
             self.config.corner_angle_threshold,
