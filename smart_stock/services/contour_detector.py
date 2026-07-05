@@ -17,7 +17,7 @@ from raygeo.geo.shape.polygon import (
     get_polygon_centroid,
     get_polygon_bounds,
     get_polygon_perimeter,
-    point_line_distance,
+    get_point_line_distance,
     get_polygon_edges,
 )
 from rayforge.image.tracing import trace_color_image
@@ -250,8 +250,8 @@ class ContourDetector:
         edge is near both points.
         """
         for idx, (ref_start, ref_end) in enumerate(ref_edges):
-            dist1 = point_line_distance(p1, ref_start, ref_end)
-            dist2 = point_line_distance(p2, ref_start, ref_end)
+            dist1 = get_point_line_distance(p1, ref_start, ref_end)
+            dist2 = get_point_line_distance(p2, ref_start, ref_end)
 
             if dist1 <= tolerance and dist2 <= tolerance:
                 return idx
