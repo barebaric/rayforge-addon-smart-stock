@@ -1,7 +1,7 @@
 name: smart_stock
 display_name: "Smart Stock"
 description: "Automatically create stock items from camera images using computer vision"
-api_version: 16
+api_version: 18
 author:
   name: "Samuel Abels"
   email: "noreply@rayforge.org"
