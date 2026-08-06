@@ -1,19 +1,19 @@
 """Tests for smart_stock services module."""
 
-import pytest
 import numpy as np
+import pytest
 from smart_stock.services import (
     contour_detector,
     image_processor,
 )
+from smart_stock.services.contour_detector import (
+    ContourConfig,
+    ContourDetector,
+    DetectedContour,
+)
 from smart_stock.services.image_processor import (
     ImageProcessor,
     ProcessingConfig,
-)
-from smart_stock.services.contour_detector import (
-    ContourDetector,
-    ContourConfig,
-    DetectedContour,
 )
 
 

@@ -8,6 +8,7 @@ from gi.repository import Gio
 from rayforge.context import get_context
 from rayforge.core.hooks import hookimpl
 from rayforge.ui_gtk.action_registry import MenuPlacement
+
 from .dialogs.stock_detection_dialog import StockDetectionDialog
 from .services.reference_manager import ReferenceManager
 

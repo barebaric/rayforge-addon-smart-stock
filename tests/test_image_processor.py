@@ -3,8 +3,8 @@
 import sys
 from pathlib import Path
 
-import pytest
 import numpy as np
+import pytest
 
 addon_path = Path(__file__).parent.parent
 if str(addon_path) not in sys.path:

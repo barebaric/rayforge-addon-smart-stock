@@ -5,21 +5,21 @@ from dataclasses import dataclass
 from typing import List, Optional
 
 import numpy as np
-
 from raygeo.geo import Geometry
 from raygeo.geo.algo.smooth import smooth_polyline_3d
-from raygeo.geo.types import Edge, Point, Polygon, Rect
 from raygeo.geo.shape.polygon import (
-    get_polygon_convex_hull,
-    offset_polygon,
-    get_polygons_union,
-    get_polygon_area,
-    get_polygon_centroid,
-    get_polygon_bounds,
-    get_polygon_perimeter,
     get_point_line_distance,
+    get_polygon_area,
+    get_polygon_bounds,
+    get_polygon_centroid,
+    get_polygon_convex_hull,
     get_polygon_edges,
+    get_polygon_perimeter,
+    get_polygons_union,
+    offset_polygon,
 )
+from raygeo.geo.types import Edge, Point, Polygon, Rect
+
 from rayforge.image.tracing import trace_color_image
 
 logger = logging.getLogger(__name__)

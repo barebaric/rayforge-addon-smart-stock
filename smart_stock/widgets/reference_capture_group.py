@@ -1,17 +1,19 @@
-from gi.repository import Adw, Gtk
-from blinker import Signal
-from gettext import gettext as _
-from typing import Dict, List, Optional, TYPE_CHECKING, Tuple
-import time
 import logging
+import time
+from gettext import gettext as _
+from typing import TYPE_CHECKING, Dict, List, Optional, Tuple
+
+from blinker import Signal
+from gi.repository import Adw, Gtk
 
 from ..models.reference_image import ReferenceImage
 from ..utils import get_output_size
 
 if TYPE_CHECKING:
-    from ..services.reference_manager import ReferenceManager
     from rayforge.camera.controller import CameraController
     from rayforge.machine.models.machine import Machine
+
+    from ..services.reference_manager import ReferenceManager
 
 logger = logging.getLogger(__name__)
 

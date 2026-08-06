@@ -1,11 +1,11 @@
 """Tests for ContourDetector class with synthetic contours."""
 
-import pytest
-import numpy as np
 import cv2
+import numpy as np
+import pytest
 from smart_stock.services.contour_detector import (
-    ContourDetector,
     ContourConfig,
+    ContourDetector,
     DetectedContour,
 )
 

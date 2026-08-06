@@ -9,6 +9,7 @@ import yaml
 from blinker import Signal
 
 from rayforge.config import get_addon_data_dir
+
 from ..models.reference_image import ReferenceImage
 
 logger = logging.getLogger(__name__)

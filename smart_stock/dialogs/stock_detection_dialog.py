@@ -3,27 +3,28 @@
 import logging
 import time
 from gettext import gettext as _
-from typing import List, Optional, Tuple, TYPE_CHECKING
+from typing import TYPE_CHECKING, List, Optional, Tuple
 
 import cv2
 import numpy as np
-from gi.repository import Adw, GLib, Gdk, GdkPixbuf, Gtk
-
+from gi.repository import Adw, Gdk, GdkPixbuf, GLib, Gtk
 from raygeo.geo import Geometry
-from rayforge.core.stock_asset import StockAsset
+
 from rayforge.core.stock import StockItem
+from rayforge.core.stock_asset import StockAsset
 from rayforge.ui_gtk.camera.selection_dialog import CameraSelectionDialog
 from rayforge.ui_gtk.shared.patched_dialog_window import PatchedDialogWindow
 from rayforge.ui_gtk.shared.slider import create_slider_row
 
 from ..models.reference_image import ReferenceImage
-from ..services.contour_detector import ContourDetector, ContourConfig
+from ..services.contour_detector import ContourConfig, ContourDetector
 from ..utils import get_output_size
 
 if TYPE_CHECKING:
     from rayforge.camera.controller import CameraController
     from rayforge.doceditor.editor import DocEditor
     from rayforge.machine.models.machine import Machine
+
     from ..services.reference_manager import ReferenceManager
 
 logger = logging.getLogger(__name__)
