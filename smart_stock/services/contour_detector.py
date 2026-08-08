@@ -2,7 +2,7 @@
 
 import logging
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import Optional
 
 import numpy as np
 from raygeo.geo import Geometry
@@ -63,7 +63,7 @@ class ContourDetector:
         current: np.ndarray,
         reference: Optional[np.ndarray] = None,
         sensitivity: float = 50.0,
-    ) -> List[DetectedContour]:
+    ) -> list[DetectedContour]:
         """
         Detect contours in an image using vtracer.
 
@@ -89,7 +89,7 @@ class ContourDetector:
         current: np.ndarray,
         reference: np.ndarray,
         sensitivity: float,
-    ) -> List[DetectedContour]:
+    ) -> list[DetectedContour]:
         """
         Detect contours by comparing current to reference.
 
@@ -187,7 +187,7 @@ class ContourDetector:
     def _polygon_has_significant_new_edges(
         self,
         polygon: Polygon,
-        ref_edges: List[Edge],
+        ref_edges: list[Edge],
         tolerance: float,
     ) -> bool:
         """
@@ -240,7 +240,7 @@ class ContourDetector:
         self,
         p1: Point,
         p2: Point,
-        ref_edges: List[Edge],
+        ref_edges: list[Edge],
         tolerance: float,
     ) -> Optional[int]:
         """
@@ -260,7 +260,7 @@ class ContourDetector:
 
     def _detect_without_reference(
         self, image: np.ndarray
-    ) -> List[DetectedContour]:
+    ) -> list[DetectedContour]:
         """Detect contours without reference comparison."""
         geometries = trace_color_image(image)
 
@@ -332,8 +332,8 @@ class ContourDetector:
         )
 
     def _merge_nearby_polygons(
-        self, polygons: List[Polygon], distance: float
-    ) -> List[Polygon]:
+        self, polygons: list[Polygon], distance: float
+    ) -> list[Polygon]:
         """Expand polygons, union overlapping ones, then shrink back."""
         if not polygons:
             return []

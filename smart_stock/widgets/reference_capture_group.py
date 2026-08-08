@@ -1,7 +1,7 @@
 import logging
 import time
 from gettext import gettext as _
-from typing import TYPE_CHECKING, Dict, List, Optional, Tuple
+from typing import TYPE_CHECKING, Optional
 
 from blinker import Signal
 from gi.repository import Adw, Gtk
@@ -27,9 +27,9 @@ class ReferenceCaptureGroup(Adw.PreferencesGroup):
             description=_("Capture reference image for stock detection"),
             **kwargs,
         )
-        self._controllers: List["CameraController"] = []
+        self._controllers: list["CameraController"] = []
         self._selected_controller: Optional["CameraController"] = None
-        self._reference_images: Dict[str, ReferenceImage] = {}
+        self._reference_images: dict[str, ReferenceImage] = {}
         self._reference_manager = reference_manager
         self._machine: Optional["Machine"] = None
 
@@ -81,7 +81,7 @@ class ReferenceCaptureGroup(Adw.PreferencesGroup):
 
         self._update_sensitivity()
 
-    def set_controllers(self, controllers: List["CameraController"]):
+    def set_controllers(self, controllers: list["CameraController"]):
         self._controllers = controllers
         self._update_sensitivity()
 
@@ -102,7 +102,7 @@ class ReferenceCaptureGroup(Adw.PreferencesGroup):
     def get_reference_image(self, camera_id: str) -> Optional[ReferenceImage]:
         return self._reference_images.get(camera_id)
 
-    def get_all_references(self) -> Dict[str, ReferenceImage]:
+    def get_all_references(self) -> dict[str, ReferenceImage]:
         return self._reference_images.copy()
 
     def _update_sensitivity(self):
@@ -143,7 +143,7 @@ class ReferenceCaptureGroup(Adw.PreferencesGroup):
 
     def _get_physical_area(
         self,
-    ) -> Optional[Tuple[Tuple[float, float], Tuple[float, float]]]:
+    ) -> Optional[tuple[tuple[float, float], tuple[float, float]]]:
         """Get the physical area matching the canvas (full axis extents)."""
         if self._machine is None:
             return None

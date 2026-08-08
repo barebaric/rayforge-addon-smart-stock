@@ -1,13 +1,12 @@
 """Utility functions for smart stock addon."""
 
-from typing import Tuple
 
 DEFAULT_OUTPUT_WIDTH = 800
 
 
 def get_output_size(
-    physical_area: Tuple[Tuple[float, float], Tuple[float, float]],
-) -> Tuple[int, int]:
+    physical_area: tuple[tuple[float, float], tuple[float, float]],
+) -> tuple[int, int]:
     """
     Calculate output size matching physical area aspect ratio.
 

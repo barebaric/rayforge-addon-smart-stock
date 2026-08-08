@@ -3,7 +3,7 @@
 import logging
 import time
 from gettext import gettext as _
-from typing import TYPE_CHECKING, List, Optional, Tuple
+from typing import TYPE_CHECKING, Optional
 
 import cv2
 import numpy as np
@@ -51,16 +51,16 @@ class StockDetectionDialog(PatchedDialogWindow):
         self._machine: Optional["Machine"] = None
         self._reference_image: Optional[ReferenceImage] = None
         self._current_frame_world: Optional[np.ndarray] = None
-        self._detected_geometries: List[Geometry] = []
+        self._detected_geometries: list[Geometry] = []
         self._capture_source_id: Optional[int] = None
         self._detecting = False
         self._last_sensitivity_state: Optional[bool] = None
         self._initial_detection_done = False
 
         self._physical_area: Optional[
-            Tuple[Tuple[float, float], Tuple[float, float]]
+            tuple[tuple[float, float], tuple[float, float]]
         ] = None
-        self._output_size: Optional[Tuple[int, int]] = None
+        self._output_size: Optional[tuple[int, int]] = None
 
         self._config = ContourConfig()
         self._detector = ContourDetector(self._config)
@@ -513,7 +513,7 @@ class StockDetectionDialog(PatchedDialogWindow):
 
     def _geometry_to_points(
         self, geometry: Geometry
-    ) -> List[Tuple[float, float]]:
+    ) -> list[tuple[float, float]]:
         points = []
         for segment in geometry.segments():
             for point in segment:

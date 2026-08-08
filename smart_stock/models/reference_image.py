@@ -1,7 +1,7 @@
 """Reference image model for storing."""
 
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Optional
 
 import numpy as np
 
@@ -15,6 +15,6 @@ class ReferenceImage:
     camera_id: str = ""
     calibration: Optional[dict] = None
     physical_area: Optional[
-        Tuple[Tuple[float, float], Tuple[float, float]]
+        tuple[tuple[float, float], tuple[float, float]]
     ] = None
-    output_size: Optional[Tuple[int, int]] = None
+    output_size: Optional[tuple[int, int]] = None

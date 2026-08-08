@@ -2,7 +2,7 @@
 
 import logging
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Optional
 
 import cv2
 import yaml
@@ -25,7 +25,7 @@ class ReferenceManager:
     """
 
     def __init__(self):
-        self._references: Dict[str, ReferenceImage] = {}
+        self._references: dict[str, ReferenceImage] = {}
         self._storage_dir = get_addon_data_dir("smart_stock") / "references"
         self._index_file = self._storage_dir / "index.yaml"
 

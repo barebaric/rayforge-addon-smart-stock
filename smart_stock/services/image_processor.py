@@ -2,7 +2,7 @@
 
 import logging
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Optional
 
 import cv2
 import numpy as np
@@ -15,7 +15,7 @@ class ProcessingConfig:
     """Configuration for image processing parameters."""
 
     clahe_clip_limit: float = 2.0
-    clahe_tile_size: Tuple[int, int] = (8, 8)
+    clahe_tile_size: tuple[int, int] = (8, 8)
     gaussian_blur_size: int = 5
     difference_threshold: int = 50
     morphology_kernel_size: int = 5
