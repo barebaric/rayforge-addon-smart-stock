@@ -1,6 +1,5 @@
 """Utility functions for smart stock addon."""
 
-
 DEFAULT_OUTPUT_WIDTH = 800
 
 
