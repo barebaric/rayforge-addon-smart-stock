@@ -1,0 +1,248 @@
+# Hindi translations for Rayforge.
+# Copyright (C) 2026 The Rayforge Project
+# This file is distributed under the same license as the Rayforge package.
+# Samuel Abels <knipknap@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Rayforge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-17 23:10+0100\n"
+"PO-Revision-Date: 2026-09-27 22:58\n"
+"Last-Translator: Samuel Abels <knipknap@gmail.com>\n"
+"Language-Team: none\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Stock Detection"
+msgstr "स्टॉक पहचान"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Close"
+msgstr "बंद करें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Create Stock Items"
+msgstr "स्टॉक आइटम बनाएँ"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Detection Settings"
+msgstr "पहचान सेटिंग्स"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Camera"
+msgstr "कैमरा"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/widgets/reference_capture_group.py
+msgid "No camera selected"
+msgstr "कोई कैमरा चयनित नहीं"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Change"
+msgstr "बदलें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Capture Reference"
+msgstr "संदर्भ कैप्चर करें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Capture current view as reference"
+msgstr "वर्तमान दृश्य को संदर्भ के रूप में कैप्चर करें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Capture"
+msgstr "कैप्चर करें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Sensitivity"
+msgstr "संवेदनशीलता"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Higher values detect more changes"
+msgstr "अधिक मान अधिक बदलाव पहचानते हैं"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Smoothing"
+msgstr "स्मूदिंग"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Higher values produce smoother contours"
+msgstr "अधिक मान अधिक चिकने कॉन्टूर बनाते हैं"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Status"
+msgstr "स्थिति"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Ready - Click 'Capture Reference' to begin"
+msgstr "तैयार - शुरू करने के लिए 'संदर्भ कैप्चर करें' पर क्लिक करें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Detect Stock"
+msgstr "स्टॉक पहचानें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "No reference manager available"
+msgstr "कोई संदर्भ प्रबंधक उपलब्ध नहीं"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Reference loaded - Ready"
+msgstr "संदर्भ लोड है - तैयार"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "No reference - Click 'Capture Reference' to capture one"
+msgstr "कोई संदर्भ नहीं - कैप्चर करने के लिए 'संदर्भ कैप्चर करें' पर क्लिक करें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Not found"
+msgstr "नहीं मिला"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Camera not found: {camera_id}"
+msgstr "कैमरा नहीं मिला: {camera_id}"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "No camera frame available"
+msgstr "कोई कैमरा फ़्रेम उपलब्ध नहीं"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "No reference image loaded"
+msgstr "कोई संदर्भ छवि लोड नहीं है"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Reference image has no frame data"
+msgstr "संदर्भ छवि में कोई फ़्रेम डेटा नहीं है"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "No physical area or output size available"
+msgstr "कोई भौतिक क्षेत्र या आउटपुट आकार उपलब्ध नहीं"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Processing..."
+msgstr "प्रोसेस हो रहा है..."
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Detected {count} items"
+msgstr "{count} आइटम पाए गए"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Click 'Create Stock Items' to add them to the document"
+msgstr "दस्तावेज़ में जोड़ने के लिए 'स्टॉक आइटम बनाएँ' पर क्लिक करें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "No stock detected"
+msgstr "कोई स्टॉक नहीं मिला"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Try adjusting the stock placement or lighting"
+msgstr "स्टॉक प्लेसमेंट या प्रकाश व्यवस्था समायोजित करने का प्रयास करें"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Detection failed"
+msgstr "पहचान विफल"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "No document editor available"
+msgstr "कोई दस्तावेज़ संपादक उपलब्ध नहीं"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "No document available"
+msgstr "कोई दस्तावेज़ उपलब्ध नहीं"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Stock {num}"
+msgstr "स्टॉक {num}"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Stock Item {num}"
+msgstr "स्टॉक आइटम {num}"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+#, python-brace-format
+msgid "Created {count} stock items"
+msgstr "{count} स्टॉक आइटम बनाए गए"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Error"
+msgstr "त्रुटि"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "No camera available"
+msgstr "कोई कैमरा उपलब्ध नहीं"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Machine work area unknown"
+msgstr "मशीन कार्य क्षेत्र अज्ञात"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Failed to capture aligned image"
+msgstr "संरेखित छवि कैप्चर करने में विफलता"
+
+#: smart_stock/dialogs/stock_detection_dialog.py
+msgid "Reference captured - Ready"
+msgstr "संदर्भ कैप्चर हुआ - तैयार"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Smart Stock Reference"
+msgstr "स्मार्ट स्टॉक संदर्भ"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Capture reference image for stock detection"
+msgstr "स्टॉक पहचान के लिए संदर्भ छवि कैप्चर करें"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Selected Camera"
+msgstr "चयनित कैमरा"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Capture current camera view as reference"
+msgstr "वर्तमान कैमरा दृश्य को संदर्भ के रूप में कैप्चर करें"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Clear Reference"
+msgstr "संदर्भ साफ़ करें"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Remove stored reference image"
+msgstr "संग्रहीत संदर्भ छवि हटाएँ"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Clear"
+msgstr "साफ़ करें"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "No reference captured"
+msgstr "कोई संदर्भ कैप्चर नहीं"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Unknown"
+msgstr "अज्ञात"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Just now"
+msgstr "अभी"
+
+#: smart_stock/widgets/reference_capture_group.py
+#, python-brace-format
+msgid "Reference captured {time}"
+msgstr "संदर्भ {time} कैप्चर हुआ"
+
+#: smart_stock/widgets/reference_capture_group.py
+msgid "Cannot capture: machine work area unknown"
+msgstr "कैप्चर नहीं कर सकते: मशीन कार्य क्षेत्र अज्ञात"
+
+#: smart_stock/frontend.py
+msgid "Detect Stock from Camera..."
+msgstr "कैमरे से स्टॉक पहचानें..."
