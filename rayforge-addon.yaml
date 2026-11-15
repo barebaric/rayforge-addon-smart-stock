@@ -1,6 +1,21 @@
 name: smart_stock
 display_name: "Smart Stock"
 description: "Automatically create stock items from camera images using computer vision"
+long_description: |
+  Smart Stock uses computer vision to detect material placed on your
+  laser bed and creates matching stock items in your document.
+
+  - Compares a reference image of the empty bed against the live
+    camera view
+  - Identifies the outlines of physical stock
+  - Generates correctly positioned stock items with the right shape
+    and size
+
+  Requires a configured and calibrated camera. Open it via
+  **Tools - Detect Stock from Camera**.
+screenshots:
+  - screenshots/screenshot.png
+url: "https://github.com/barebaric/rayforge-addon-smart-stock"
 api_version: 18
 author:
   name: "Samuel Abels"
