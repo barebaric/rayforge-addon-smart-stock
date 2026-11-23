@@ -68,10 +68,21 @@ class StockDetectionDialog(PatchedDialogWindow):
 
         self.set_title(_("Stock Detection"))
         self.set_default_size(1150, 750)
+        self._camera_connected = False
 
         self._setup_ui()
         self._load_reference()
         self._load_camera()
+        # Subscribing and starting the frame poll must not happen here:
+        # the per-tick capture work would compete with the dialog's own
+        # first allocation and paint, which on busy systems leaves the
+        # window mapped but never drawn. Connect on map instead.
+        self.connect("map", self._on_dialog_map)
+
+    def _on_dialog_map(self, widget):
+        if self._camera_connected:
+            return
+        self._camera_connected = True
         self._connect_camera_signals()
 
     def _setup_ui(self):
@@ -284,7 +295,7 @@ class StockDetectionDialog(PatchedDialogWindow):
         if self._controller:
             self._controller.subscribe()
             self._capture_source_id = GLib.timeout_add(
-                33, self._on_capture_frame
+                100, self._on_capture_frame
             )
 
     def _on_capture_frame(self) -> bool:
@@ -682,8 +693,8 @@ class StockDetectionDialog(PatchedDialogWindow):
         logger.info(f"Reference captured for camera {self._camera_id}")
 
     def _on_camera_change_clicked(self, button):
-        dialog = CameraSelectionDialog(self, mode="configured")
-        dialog.present()
+        dialog = CameraSelectionDialog(mode="configured")
+        dialog.present(self)
 
         def on_response(dialog, response_id):
             if response_id == "select" and dialog.selected_device_id:

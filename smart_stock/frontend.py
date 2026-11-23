@@ -3,7 +3,7 @@
 import logging
 from gettext import gettext as _
 
-from gi.repository import Gio
+from gi.repository import Adw, Gio
 
 from rayforge.context import get_context
 from rayforge.core.hooks import hookimpl
@@ -46,6 +46,17 @@ def register_actions(action_registry):
         controllers = camera_mgr.controllers
 
         if not controllers:
+            logger.warning(
+                "Cannot open stock detection: no camera is configured"
+            )
+            window.toast_overlay.add_toast(
+                Adw.Toast.new(
+                    _(
+                        "No camera is configured. Add a camera in the "
+                        "camera settings first."
+                    )
+                )
+            )
             return
 
         camera_id = controllers[0].config.device_id
@@ -55,6 +66,11 @@ def register_actions(action_registry):
             doc_editor=window.doc_editor,
             transient_for=window,
         )
+        # Keep this identical to the presentation pattern of the other
+        # Tools menu dialogs (AI workpiece, print and cut): a plain
+        # toplevel presented synchronously in the activation. The dialog
+        # connects to the camera only after it is mapped, so no capture
+        # work competes with its first paint.
         dialog.present()
 
     action.connect("activate", on_activate)
